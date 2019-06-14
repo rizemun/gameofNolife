@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>rizemooooooooon</h1>
+
+<input type="button" id="send" style='position: relative;top:0;left:0' value="rule me!">
+
+
+
+<script>
+let send = document.getElementById('send');
+
+
+let socket = new WebSocket('ws://localhost:3000');
+socket.onopen = function() {
+  console.log('Соединение с сервером установлено');
+}
+socket.onmessage = function(data) {
+  console.log(data.data)
+  switch(data.data) {
+    case "top":
+      send.style.top = (parseInt(send.style.top)-10)+'px';
+    break;
+
+    case "bottom":
+      send.style.top = (parseInt(send.style.top)+10)+'px';
+
+    break;
+
+    case "left":
+      send.style.left = (parseInt(send.style.left)-10)+'px';
+
+    break;
+
+    case "right":
+      send.style.left = (parseInt(send.style.left)+10)+'px';
+
+    break;
+    default:
+      console.log(data.data);
+    break;
+  }
+
+
+}
+
+let a = 0;
+send.onclick = function() {
+  socket.send(a++)
+}
+
+document.addEventListener('keydown',function(event){
+  console.log(event.keyCode);
+  switch (event.keyCode){
+    case 65:
+      socket.send('left')
+    break;
+    case 68:
+      socket.send('right')
+    break;
+    case 87:
+      socket.send('top')
+    break;
+    case 83:
+      socket.send('bottom')
+    break;
+  }
+
+})
+
+
+
+
+</script>
+
+</body>
+</html>

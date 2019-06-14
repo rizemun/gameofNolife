@@ -1,0 +1,27 @@
+<%- include('includes/header'); -%>
+
+<h1><%= title %></h1>
+<form class="" action="/articles/add" method="post">
+  <div id="form-group">
+    <label>
+      Title:
+      <input class="form-controll" type="text" name="title" value="">
+    </label>
+  </div>
+  <div id="form-group">
+    <label>
+      Name:
+      <input class="form-controll" type="text" name="author" value="">
+    </label>
+  </div>
+  <div id="form-group">
+    <label>
+      Body:
+      <textarea name="body"></textarea>
+    </label>
+  </div>
+
+  <input type="submit" name="" value="submit">
+</form>
+
+<%- include('includes/footer'); -%>

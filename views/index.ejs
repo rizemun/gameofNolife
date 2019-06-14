@@ -1,0 +1,11 @@
+<%- include('includes/header'); -%>
+
+<ul>
+  <% users.forEach(function(user){ %>
+    <li>
+      <a href="/ws/<%= user.id %>"><%= user.nickname %></a>
+    </li>
+  <% }); %>
+</ul>
+
+<%- include('includes/footer'); -%>
