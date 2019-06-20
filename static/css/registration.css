@@ -1,0 +1,71 @@
+.auth-registration {
+    position: absolute;
+    width: 400px;
+    padding: 40px;
+    box-shadow: 10px 0 10px -10px #000,
+    -10px 0 10px -10px #000;
+    left: calc(50% - 200px);
+    top: calc(50% - 100px);
+    background-color: white;
+}
+
+.auth-registration__button-holder {
+    display: flex;
+}
+
+.auth-registration__button {
+    flex-grow: 1;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.auth-registration__button._active {
+    background-color: #8a463d;
+    color: white;
+}
+
+.registration__forms {
+
+}
+
+.registration {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.registration__header {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.registration__input {
+    padding: 10px 10%;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    width: 100%;
+    outline: none;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.registration__button {
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+._hidden {
+    display: none !important;
+}

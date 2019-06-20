@@ -1,0 +1,37 @@
+<%- include('includes/header'); -%>
+<%= username %>
+
+
+<div class="auth-registration">
+    <div class="auth-registration__button-holder">
+        <div class="auth-registration__button _active" data-shown-id="auth">Вход</div>
+        <div class="auth-registration__button" data-shown-id="registration">Регистрация</div>
+    </div>
+    <div class="auth-registration__forms">
+
+        <form action="/" class="registration _hidden" method="POST" id="registration">
+            <div class="registration__header">gameofNOlife</div>
+            <input type="text" id="registration-login" class="registration__input" name="login" placeholder="Логин" required value="">
+            <?php echo $loginExist;?>
+            <input type="password" id="registration-password" class="registration__input" name="password" placeholder="Пароль" required>
+
+            <input type="email" id="registration-email" class="registration__input" name="email" placeholder="Email" required value="">
+
+            <input type="text" id="registration-name" class="registration__input" name="nickname" placeholder="Никнейм" required value="">
+
+            <input type="hidden" name="act" value="registration">
+            <button class="registration__button">Зарегистрироваться</button>
+        </form>
+
+        <form action="/" class="registration" method="POST" id="auth">
+            <div class="registration__header">gameofNOlife</div>
+            <input type="text" id="auth-login" class="registration__input" name="login" placeholder="Логин" required>
+            <input type="password" id="auth-password" class="registration__input" name="password" placeholder="Пароль" required>
+            <input type="hidden" name="act" value="auth">
+            <button class="registration__button">Войти</button>
+        </form>
+
+    </div>
+</div>
+
+<%- include('includes/footer'); -%>
