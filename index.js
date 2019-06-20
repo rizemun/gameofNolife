@@ -1,27 +1,32 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
 const http = require('http');
 const md5 = require('md5');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const pg = require('pg');
 
 let server = http;
+let bdClient;
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'rizemun',
-    password: '0000',
-    database: 'gameofnolife'
-});
+const config = {
+    host: 'ec2-54-163-230-199.compute-1.amazonaws.com',
+    user: 'qfkwlriyjewtny',
+    database: 'd2lnbt6smf3am7',
+    password: '36cca84440557b1c9079c0bde376b39fb6aee0df093ee9be98b867866845b6dd',
+    port: 5432
+};
+
+const pool = new pg.Pool(config);
 
 console.log('Server is starting.');
 
 //Check connection
-connection.connect(function (err) {
+pool.connect(function (err, client, done) {
     if (err) throw err;
-    console.log('Connected to MySQL')
+    bdClient = client;
+    console.log('Connected to PostgreSQL')
 });
 
 
@@ -66,7 +71,7 @@ app.use(session({
 app.get('/', function (req, res) {
 
     // res.sendFile('./html/index.html');
-    connection.query('SELECT * FROM user', function (err, result, fields) {
+    bdClient.query('SELECT * FROM user', function (err, result, fields) {
         if (err) throw err;
 
 
@@ -103,7 +108,7 @@ app.post('/', function (req, res) {
 
             let login = req.body.login;
             let md5password = md5(req.body.password);
-            connection.query(
+            bdClient.query(
                 'SELECT * FROM user WHERE login = ? AND  password = ?',
                 [login, md5password],
                 function (err, result, fields) {
