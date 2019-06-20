@@ -35,7 +35,7 @@ const app = express();
 const expressWs = require('express-ws')(app);
 
 
-let olo = require('./models/user')(connection);
+let olo = require('./models/user')(pool);
 
 
 /*
